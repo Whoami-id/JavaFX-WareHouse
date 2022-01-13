@@ -1,0 +1,44 @@
+
+# Create a database
+create database products_database;
+use products_database;
+
+ 
+# Create a table where you put the products in .
+create table products (
+id int primary key auto_increment,
+name varchar(30) not null,
+quantity_to_buy int not null,
+buy_if_less_than int not null,
+UNIQUE KEY (name)
+);
+
+ 
+
+# Create a table where do you see the actual state of your product from stock and the date and time 
+create table states(
+id int primary key auto_increment, 
+date_of_last_update bigint not null ,
+actual_on_stock int not null,
+id_product int not null,
+Foreign key (id_product) references products(id),
+UNIQUE KEY (id_product,date_of_last_update)
+);
+ 
+
+# Create a table with tells you when , what and how much did you buyed
+create table from_shop (
+id int primary key auto_increment,
+date_of_purchase bigint not null,
+quantity_purchased int ,
+id_product int not null,
+Foreign key (id_product) references products(id)
+);
+
+
+
+
+
+ 
+
+
